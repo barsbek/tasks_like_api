@@ -1,9 +1,5 @@
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), 'lib'))
 
-puts '------'
-puts File.join(File.dirname(__FILE__), 'lib')
-puts '------'
-
 require 'rubygems'
 require 'bundler/setup'
 
@@ -15,7 +11,7 @@ app = Rack::Builder.new do
   use Rack::Cors do
     allow do
       origins "*"
-      resource "*", headers: :any, methods: [:post, :put]
+      resource "*", headers: :any, methods: [:get, :post, :put, :delete]
     end
   end
   run TasksLike::API

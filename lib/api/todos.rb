@@ -21,8 +21,14 @@ module TasksLike
 
         params { requires :text, type: String }
         put do
-          todo = Todos.todos.find{|t| t[:id] == params[:id].to_i }
+          todo = Todos.todos.find{ |t| t[:id] == params[:id].to_i }
           todo[:text] = params[:text]
+          todo
+        end
+
+        delete do
+          todo = Todos.todos.find{ |t| t[:id] == params[:id].to_i }
+          Todos.todos.reject!{ |t| t[:id] == params[:id].to_i }
           todo
         end
       end
